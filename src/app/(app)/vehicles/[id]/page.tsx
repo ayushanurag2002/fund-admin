@@ -208,7 +208,7 @@ export default function VehicleDetailPage() {
               <Card className="xl:col-span-2">
                 <CardHeader title="Ownership" subtitle={`Pro-rata by ${contributions > 0 ? "contributed capital" : "commitments"}`} action={<Button size="sm" variant="ghost" onClick={() => downloadCsv(`${v.name}-captable.csv`, cap.map((r) => ({ investor: r.investor.name, email: r.investor.email, committed: r.committed, contributed: r.contributed, ownership_pct: r.ownershipPct.toFixed(4) })))}><Download className="h-3.5 w-3.5" /> CSV</Button>} />
                 <CardBody>
-                  <table className="w-full text-sm">
+                  <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
                     <thead className="text-[11px] uppercase tracking-wider text-faint"><tr><th className="pb-2 text-left font-semibold">Investor</th><th className="pb-2 text-right font-semibold">Committed</th><th className="pb-2 text-right font-semibold">Contributed</th><th className="pb-2 text-right font-semibold">Ownership</th></tr></thead>
                     <tbody>
                       {cap.map((r) => (
@@ -220,7 +220,7 @@ export default function VehicleDetailPage() {
                         </tr>
                       ))}
                     </tbody>
-                  </table>
+                  </table></div>
                 </CardBody>
               </Card>
               <Card><CardHeader title="Concentration" /><CardBody><Donut height={170} data={cap.slice(0, 6).map((r) => ({ name: r.investor.name, value: contributions > 0 ? r.contributed : r.committed })).concat(cap.length > 6 ? [{ name: "Others", value: cap.slice(6).reduce((a, r) => a + (contributions > 0 ? r.contributed : r.committed), 0) }] : [])} /></CardBody></Card>

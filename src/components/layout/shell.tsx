@@ -33,15 +33,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-bg">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="lg:pl-64">
+      <div className="min-w-0 lg:pl-64">
         <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-bg/80 px-4 backdrop-blur-md sm:px-6">
           <button className="rounded-lg p-2 text-muted hover:bg-hover lg:hidden" onClick={() => setSidebarOpen(true)}><Menu className="h-5 w-5" /></button>
-          <button onClick={() => setPaletteOpen(true)} className="flex h-9 flex-1 items-center gap-2 rounded-lg border border-border bg-elev px-3 text-sm text-faint shadow-card hover:border-border-strong sm:max-w-md">
+          <button onClick={() => setPaletteOpen(true)} className="flex h-9 min-w-0 flex-1 items-center gap-2 rounded-lg border border-border bg-elev px-3 text-sm text-faint shadow-card hover:border-border-strong sm:max-w-md">
             <Search className="h-4 w-4" />
             <span className="flex-1 truncate text-left">Search vehicles, investors…</span>
             <kbd className="hidden rounded border border-border bg-subtle px-1.5 py-0.5 text-[10px] font-medium sm:block">⌘K</kbd>
           </button>
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex shrink-0 items-center gap-1">
             <Link href="/vehicles/new" className="hidden sm:block">
               <Button size="sm"><Plus className="h-4 w-4" /> New vehicle</Button>
             </Link>
@@ -73,7 +73,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
         </header>
-        <main className="mx-auto w-full max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8">
+        <main className="mx-auto w-full min-w-0 max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8">
           {hydrated ? <div className="animate-fade-up">{children}</div> : <ShellSkeleton />}
         </main>
       </div>

@@ -45,7 +45,7 @@ export function DistributionCard({ dist, showVehicle, defaultOpen }: { dist: Dis
             {dist.status === "approved" ? <Button size="sm" variant="success" onClick={() => toast.result(d.payDistribution(dist.id))}><Banknote className="h-3.5 w-3.5" /> Pay & book to ledger</Button> : null}
             {dist.status !== "paid" ? <Button size="sm" variant="ghost" className="text-danger" onClick={() => toast.result(d.deleteDistribution(dist.id))}><Trash2 className="h-3.5 w-3.5" /> Delete</Button> : null}
           </div>
-          <table className="w-full text-sm">
+          <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
             <thead className="text-[11px] uppercase tracking-wider text-faint"><tr><th className="px-4 py-2 text-left font-semibold">Investor</th><th className="px-4 py-2 text-right font-semibold">Gross</th><th className="px-4 py-2 text-right font-semibold">Carry</th><th className="px-4 py-2 text-right font-semibold">Net</th></tr></thead>
             <tbody>
               {dist.allocations.map((a) => (
@@ -57,7 +57,7 @@ export function DistributionCard({ dist, showVehicle, defaultOpen }: { dist: Dis
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       ) : null}
     </Card>

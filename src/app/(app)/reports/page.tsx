@@ -56,7 +56,7 @@ export default function ReportsPage() {
           <Card>
             <CardHeader title="Vehicle performance" action={<Button size="sm" variant="outline" onClick={() => downloadCsv("performance.csv", perf.map((p) => ({ vehicle: p.v.name, status: p.v.status, contributed: p.contributed, distributed: p.distributed, nav: p.nav, moic: p.moic?.toFixed(2) ?? "" })))}><Download className="h-3.5 w-3.5" /> CSV</Button>} />
             <CardBody>
-              <table className="w-full text-sm">
+              <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
                 <thead className="text-[11px] uppercase tracking-wider text-faint"><tr><th className="pb-2 text-left font-semibold">Vehicle</th><th className="pb-2 text-left font-semibold">Status</th><th className="pb-2 text-right font-semibold">Contributed</th><th className="pb-2 text-right font-semibold">Distributed</th><th className="pb-2 text-right font-semibold">NAV</th><th className="pb-2 text-right font-semibold">DPI</th><th className="pb-2 text-right font-semibold">MOIC</th></tr></thead>
                 <tbody>
                   {perf.map((p) => (
@@ -71,7 +71,7 @@ export default function ReportsPage() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             </CardBody>
           </Card>
         </>
@@ -91,7 +91,7 @@ export default function ReportsPage() {
                   <Stat label="NAV" value={fmtCurrency(sum(positions.map((p) => p.nav)), { compact: true })} tone="teal" />
                 </div>
                 {positions.length === 0 ? <p className="text-sm text-muted">No funded positions.</p> : (
-                  <table className="w-full text-sm">
+                  <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
                     <thead className="text-[11px] uppercase tracking-wider text-faint"><tr><th className="pb-2 text-left font-semibold">Vehicle</th><th className="pb-2 text-right font-semibold">Committed</th><th className="pb-2 text-right font-semibold">Contributed</th><th className="pb-2 text-right font-semibold">Distributed</th><th className="pb-2 text-right font-semibold">Ownership</th><th className="pb-2 text-right font-semibold">NAV</th><th className="pb-2 text-right font-semibold">MOIC</th></tr></thead>
                     <tbody>
                       {positions.map((p) => (
@@ -106,7 +106,7 @@ export default function ReportsPage() {
                         </tr>
                       ))}
                     </tbody>
-                  </table>
+                  </table></div>
                 )}
               </CardBody>
             </Card>
@@ -118,7 +118,7 @@ export default function ReportsPage() {
         <Card>
           <CardHeader title="GP economics" subtitle="Vehicles administered, assets and carry realised per manager" />
           <CardBody>
-            <table className="w-full text-sm">
+            <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
               <thead className="text-[11px] uppercase tracking-wider text-faint"><tr><th className="pb-2 text-left font-semibold">Manager</th><th className="pb-2 text-right font-semibold">Vehicles</th><th className="pb-2 text-right font-semibold">AUA</th><th className="pb-2 text-right font-semibold">Carry realised</th></tr></thead>
               <tbody>
                 {gpRows.map((g) => (
@@ -130,7 +130,7 @@ export default function ReportsPage() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
           </CardBody>
         </Card>
       ) : null}

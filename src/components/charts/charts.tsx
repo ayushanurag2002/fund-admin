@@ -34,7 +34,7 @@ export function AreaTrend({ data, keys, height = 240, money = true }: { data: Re
           ))}
         </defs>
         <CartesianGrid vertical={false} stroke="var(--border)" strokeDasharray="3 3" />
-        <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "var(--fg-faint)" }} />
+        <XAxis dataKey="label" tickLine={false} axisLine={false} interval={0} tick={{ fontSize: 10, fill: "var(--fg-faint)" }} />
         <YAxis tickLine={false} axisLine={false} width={48} allowDecimals={money} tick={{ fontSize: 11, fill: "var(--fg-faint)" }} tickFormatter={(v) => (money ? fmtCurrency(v, { compact: true }) : String(v))} />
         <Tooltip content={<TooltipBox formatter={(v) => (money ? fmtCurrency(v) : String(v))} />} cursor={{ stroke: "var(--border-strong)" }} />
         {keys.map((k, i) => (
@@ -50,7 +50,7 @@ export function Bars({ data, keys, height = 240, money = true, stacked }: { data
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }} barCategoryGap={18}>
         <CartesianGrid vertical={false} stroke="var(--border)" strokeDasharray="3 3" />
-        <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: "var(--fg-faint)" }} />
+        <XAxis dataKey="label" tickLine={false} axisLine={false} interval={0} tick={{ fontSize: 10, fill: "var(--fg-faint)" }} />
         <YAxis tickLine={false} axisLine={false} width={48} allowDecimals={money} tick={{ fontSize: 11, fill: "var(--fg-faint)" }} tickFormatter={(v) => (money ? fmtCurrency(v, { compact: true }) : String(v))} />
         <Tooltip content={<TooltipBox formatter={(v) => (money ? fmtCurrency(v) : String(v))} />} cursor={{ fill: "var(--bg-hover)" }} />
         {keys.map((k, i) => (
@@ -64,7 +64,7 @@ export function Bars({ data, keys, height = 240, money = true, stacked }: { data
 export function Donut({ data, height = 220, money = true }: { data: { name: string; value: number }[]; height?: number; money?: boolean }) {
   const total = data.reduce((a, d) => a + d.value, 0);
   return (
-    <div className="flex items-center gap-6">
+    <div className="@container"><div className="flex flex-col items-center gap-5 @[380px]:flex-row @[380px]:gap-6">
       <div style={{ width: height, height }} className="relative shrink-0">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -79,7 +79,7 @@ export function Donut({ data, height = 220, money = true }: { data: { name: stri
           <span className="text-lg font-semibold tnum">{money ? fmtCurrency(total, { compact: true }) : total}</span>
         </div>
       </div>
-      <ul className="flex-1 space-y-2">
+      <ul className="w-full min-w-0 flex-1 space-y-2">
         {data.map((d, i) => (
           <li key={d.name} className="flex items-center gap-2 text-[13px]">
             <span className="h-2.5 w-2.5 rounded-sm" style={{ background: CHART_COLORS[i % CHART_COLORS.length] }} />
@@ -89,6 +89,7 @@ export function Donut({ data, height = 220, money = true }: { data: { name: stri
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

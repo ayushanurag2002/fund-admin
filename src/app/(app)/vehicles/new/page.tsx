@@ -56,12 +56,12 @@ export default function NewVehiclePage() {
   return (
     <div className="mx-auto max-w-3xl">
       <PageHeader back={{ href: "/vehicles", label: "Vehicles" }} title="Create a new vehicle" subtitle="Set up an SPV or fund. It starts as a draft so you can review before launching the raise." />
-      <ol className="mb-6 flex items-center gap-2">
+      <ol className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-2">
         {steps.map((s, i) => (
           <li key={s} className="flex items-center gap-2">
             <span className={cn("flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold transition-colors", i < step ? "bg-success text-white" : i === step ? "bg-brand text-white" : "bg-subtle text-faint")}>{i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}</span>
-            <span className={cn("text-sm font-medium", i === step ? "text-fg" : "text-faint")}>{s}</span>
-            {i < steps.length - 1 ? <ChevronRight className="mx-1 h-4 w-4 text-faint" /> : null}
+            <span className={cn("text-sm font-medium", i === step ? "text-fg" : "hidden text-faint sm:inline")}>{s}</span>
+            {i < steps.length - 1 ? <ChevronRight className="mx-0.5 h-4 w-4 text-faint sm:mx-1" /> : null}
           </li>
         ))}
       </ol>

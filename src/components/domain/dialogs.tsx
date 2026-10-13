@@ -107,7 +107,7 @@ function CapitalCallDialogInner({ open, onClose, vehicleId: initialVehicle }: { 
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-faint">Pro-rata allocation · {fmtCurrency(total)}</p>
             <div className="max-h-56 overflow-y-auto rounded-lg border border-border">
-              <table className="w-full text-sm">
+              <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
                 <tbody>
                   {items.map((it) => (
                     <tr key={it.investorId} className="border-b border-border last:border-0">
@@ -117,7 +117,7 @@ function CapitalCallDialogInner({ open, onClose, vehicleId: initialVehicle }: { 
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </div>
         </div>
@@ -174,7 +174,7 @@ function DistributionDialogInner({ open, onClose, vehicleId: initialVehicle }: {
               </div>
               {wf.notes.map((n) => <p key={n} className="text-xs text-muted">• {n}</p>)}
               <div className="max-h-56 overflow-y-auto rounded-lg border border-border">
-                <table className="w-full text-sm">
+                <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
                   <thead className="bg-subtle/60 text-[11px] uppercase tracking-wider text-faint"><tr><th className="px-3 py-2 text-left font-semibold">Investor</th><th className="px-3 py-2 text-right font-semibold">Gross</th><th className="px-3 py-2 text-right font-semibold">Carry</th><th className="px-3 py-2 text-right font-semibold">Net</th></tr></thead>
                   <tbody>
                     {wf.allocations.map((a) => (
@@ -186,7 +186,7 @@ function DistributionDialogInner({ open, onClose, vehicleId: initialVehicle }: {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table></div>
               </div>
             </>
           ) : null}

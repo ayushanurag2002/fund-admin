@@ -109,7 +109,7 @@ export default function InvestorDetailPage() {
         ) : null}
         {tab === "transactions" ? (
           <Card>
-            <table className="w-full text-sm">
+            <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
               <thead className="bg-subtle/60 text-[11px] uppercase tracking-wider text-faint"><tr><th className="px-4 py-2.5 text-left font-semibold">Date</th><th className="px-4 py-2.5 text-left font-semibold">Vehicle</th><th className="px-4 py-2.5 text-left font-semibold">Type</th><th className="px-4 py-2.5 text-left font-semibold">Memo</th><th className="px-4 py-2.5 text-right font-semibold">Amount</th></tr></thead>
               <tbody>
                 {ledger.length === 0 ? <tr><td colSpan={5} className="px-4 py-10 text-center text-muted">No transactions</td></tr> : null}
@@ -123,7 +123,7 @@ export default function InvestorDetailPage() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
             <p className="border-t border-border px-4 py-2 text-[11px] text-faint">Shown from the investor&apos;s perspective: contributions are outflows, distributions are inflows.</p>
           </Card>
         ) : null}

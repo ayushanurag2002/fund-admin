@@ -49,7 +49,7 @@ export function CapitalCallCard({ call, showVehicle, defaultOpen }: { call: Capi
             {(call.status === "draft" || call.status === "sent") ? <Button size="sm" variant="ghost" className="text-danger" onClick={() => toast.result(d.cancelCapitalCall(call.id))}><Ban className="h-3.5 w-3.5" /> Cancel</Button> : null}
             <span className="ml-auto text-xs text-muted">{call.items.filter((i) => i.received).length}/{call.items.length} LPs funded</span>
           </div>
-          <table className="w-full text-sm">
+          <div className="scroll-area overflow-x-auto"><table className="w-full text-sm">
             <tbody>
               {call.items.map((it) => (
                 <tr key={it.investorId} className="border-t border-border">
@@ -64,7 +64,7 @@ export function CapitalCallCard({ call, showVehicle, defaultOpen }: { call: Capi
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       ) : null}
     </Card>
