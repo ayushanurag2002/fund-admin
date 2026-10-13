@@ -9,12 +9,12 @@ const subscribe = (cb: () => void) => {
   return () => listeners.delete(cb);
 };
 const getSnapshot = (): Theme => (document.documentElement.classList.contains("dark") ? "dark" : "light");
-const getServerSnapshot = (): Theme => "dark";
+const getServerSnapshot = (): Theme => "light";
 
 export function setTheme(next: Theme) {
   document.documentElement.classList.toggle("dark", next === "dark");
   try {
-    localStorage.setItem("fa-theme", next);
+    localStorage.setItem("fa-theme-v2", next);
   } catch {}
   listeners.forEach((l) => l());
 }
@@ -34,4 +34,4 @@ export function ThemeToggle() {
   );
 }
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem('fa-theme')||'dark';if(t==='dark')document.documentElement.classList.add('dark');}catch(e){document.documentElement.classList.add('dark');}})();`;
+export const themeInitScript = `(function(){try{if(localStorage.getItem('fa-theme-v2')==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`;
